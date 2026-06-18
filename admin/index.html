@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — VoltMoto</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .admin-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+        @media (max-width: 768px) { .admin-layout { grid-template-columns: 1fr; } }
+
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; color: #fff; font-weight: 600; margin-bottom: 0.3rem; font-size: 0.9rem; }
+        .form-group label span { color: var(--muted); font-weight: 400; font-size: 0.8rem; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.7rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: var(--font);
+        }
+        .form-group textarea { min-height: 250px; resize: vertical; font-family: var(--mono); font-size: 0.85rem; line-height: 1.5; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--green); }
+
+        .tag-input-area { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .tag-input-area input { flex: 1; min-width: 100px; }
+        .tag-pill {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 4px;
+            padding: 0.2rem 0.6rem; font-size: 0.8rem; color: var(--muted);
+        }
+        .tag-pill .remove { cursor: pointer; color: #f44; font-weight: 700; font-size: 0.9rem; }
+
+        .btn-bar { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
+
+        .preview-box {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+            padding: 1.5rem; position: sticky; top: 5rem;
+        }
+        .preview-box h3 { color: #fff; margin-bottom: 0.8rem; font-size: 1rem; }
+        .preview-content { color: var(--text); font-size: 0.95rem; line-height: 1.5; max-height: 500px; overflow-y: auto; }
+        .preview-content h2 { color: #fff; font-size: 1.2rem; margin: 1rem 0 0.5rem; }
+        .preview-content p { margin-bottom: 0.8rem; }
+        .preview-content ul, .preview-content ol { padding-left: 1.2rem; margin-bottom: 0.8rem; }
+        .preview-content li { margin-bottom: 0.3rem; }
+        .preview-content blockquote {
+            border-left: 3px solid var(--green); padding: 0.3rem 0.8rem;
+            margin: 0.8rem 0; background: var(--bg3); border-radius: 0 4px 4px 0; color: var(--muted);
+        }
+        .preview-content .tag { display: inline-block; font-size: 0.7rem; padding: 0.1rem 0.5rem;
+            border-radius: 4px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); margin-right: 0.3rem; }
+        .preview-content img { max-width: 100%; border-radius: 8px; margin: 0.5rem 0; }
+
+        .output-box {
+            background: var(--bg2); border: 1px solid var(--green); border-radius: 12px;
+            padding: 1.2rem; margin-top: 1.5rem; display: none;
+        }
+        .output-box.show { display: block; }
+        .output-box h3 { color: var(--green); margin-bottom: 0.5rem; }
+        .output-box textarea {
+            width: 100%; min-height: 200px; background: var(--bg); color: #fff;
+            border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem;
+            font-family: var(--mono); font-size: 0.8rem; resize: vertical;
+        }
+        .output-box .copy-btn {
+            background: var(--green); color: #000; font-weight: 700; border: none;
+            padding: 0.5rem 1.2rem; border-radius: 6px; cursor: pointer; margin-top: 0.5rem;
+        }
+        .steps-list { margin: 0.5rem 0 1rem; padding-left: 1.2rem; }
+        .steps-list li { margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .steps-list a { color: var(--green); }
+
+        .draft-bar {
+            display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+            padding: 0.8rem; background: var(--bg2); border-radius: 8px; border: 1px solid var(--border);
+        }
+        .draft-bar span { color: var(--muted); font-size: 0.85rem; align-self: center; }
+        .draft-btn {
+            background: var(--bg3); border: 1px solid var(--border); color: var(--muted);
+            padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; cursor: pointer;
+        }
+        .draft-btn:hover { border-color: var(--green); color: var(--green); }
+        .draft-btn.active { border-color: var(--green); color: var(--green); }
+
+        .tab-bar { display: flex; gap: 0; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+        .tab-bar button {
+            background: none; border: none; padding: 0.7rem 1.2rem; color: var(--muted);
+            cursor: pointer; font-size: 0.9rem; border-bottom: 2px solid transparent;
+        }
+        .tab-bar button.active { color: var(--green); border-bottom-color: var(--green); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .format-help { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+        .format-help code { background: var(--bg3); padding: 0.1rem 0.3rem; border-radius: 3px; color: var(--text); }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="/marin/" class="logo">Volt<span>Moto</span></a>
+        <button class="hamburger" aria-label="Menu">☰</button>
+        <nav>
+            <a href="/marin/">Home</a>
+            <a href="../build-log/">Build Log</a>
+            <a href="../specs.html">Specs &amp; BOM</a>
+            <a href="../timeline.html">Timeline</a>
+            <a href="index.html">Research</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-content">
+    <div class="container">
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+            <h1>✏️ New Build Log Post</h1>
+            <span class="muted mono" id="post-number-display">Post 001</span>
+        </div>
+
+        <!-- Drafts -->
+        <div class="draft-bar" id="draft-bar">
+            <span>💾 Drafts:</span>
+            <button class="draft-btn active" onclick="loadDraft('new')">+ New</button>
+            <div id="draft-list" style="display:inline;"></div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-bar">
+            <button class="active" onclick="switchTab('write', this)">Write</button>
+            <button onclick="switchTab('preview', this)">Preview</button>
+            <button onclick="switchTab('publish', this)">Publish</button>
+        </div>
+
+        <div class="admin-layout">
+            <!-- Left: Form -->
+            <div>
+                <div id="tab-write" class="tab-content active">
+
+                    <div class="form-group">
+                        <label>Post Number <span>(e.g. "Post 001")</span></label>
+                        <input type="text" id="post-number" value="Post 001" oninput="updatePreview(); autoSave();">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date <span>(e.g. "Jun 22, 2026")</span></label>
+                        <input type="text" id="post-date" oninput="updatePreview(); autoSave();">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="post-title" placeholder="Found the Donor Bike!" oninput="updatePreview(); autoSave();">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Excerpt <span>(shown on the build log index page)</span></label>
+                        <input type="text" id="post-excerpt" placeholder="Picked up a 2016 Honda Grom frame for $400..." oninput="autoSave();">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <div class="tag-input-area">
+                            <input type="text" id="tag-input" placeholder="Add tag + Enter" onkeydown="if(event.key==='Enter'){event.preventDefault();addTag();}">
+                        </div>
+                        <div id="tag-list" style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.5rem;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content <span>(write in HTML)</span></label>
+                        <div class="format-help">
+                            Use HTML tags: <code>&lt;p&gt;</code> paragraphs &bull; <code>&lt;h2&gt;</code> headings &bull;
+                            <code>&lt;ul&gt;&lt;li&gt;</code> bullet lists &bull;
+                            <code>&lt;img src="url"&gt;</code> images &bull;
+                            <code>&lt;blockquote&gt;</code> quotes
+                        </div>
+                        <textarea id="post-content" placeholder="<p>Your first paragraph...</p>&#10;&#10;<h2>Section Title</h2>&#10;<p>More text here.</p>" oninput="updatePreview(); autoSave();"></textarea>
+                    </div>
+
+                    <div class="btn-bar">
+                        <button class="btn" onclick="saveDraft()">💾 Save Draft</button>
+                        <button class="btn btn-outline" onclick="clearForm()">🗑️ Clear</button>
+                    </div>
+                </div>
+
+                <!-- Preview Tab -->
+                <div id="tab-preview" class="tab-content">
+                    <div class="preview-box" style="position:static;">
+                        <div id="preview-header">
+                            <p class="mono" style="color:var(--green-dim);" id="preview-meta"></p>
+                            <h2 style="color:#fff; margin-bottom:1rem;" id="preview-title"></h2>
+                        </div>
+                        <hr style="border-color:var(--border); margin-bottom:1rem;">
+                        <div class="preview-content" id="preview-body">
+                            <p class="muted">Write something to see the preview...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publish Tab -->
+                <div id="tab-publish" class="tab-content">
+                    <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:1.5rem;">
+                        <h3 style="color:#fff; margin-bottom:0.5rem;">🚀 Ready to Publish</h3>
+                        <p class="muted" style="margin-bottom:1rem;">Copy these two things into GitHub. The site will update automatically.</p>
+
+                        <h4 style="color:#fff; margin-bottom:0.5rem;">Step 1: Create the post file</h4>
+                        <p class="muted" style="font-size:0.85rem; margin-bottom:0.3rem;">
+                            1. Go to <a href="https://github.com/MARINBRU/marin/tree/main/build-log" target="_blank">build-log/ on GitHub</a><br>
+                            2. Click <strong>Add file → Create new file</strong><br>
+                            3. Name it: <code id="filename-display" style="color:var(--green);">post-001.html</code><br>
+                            4. Paste the HTML below and click <strong>Commit new file</strong>
+                        </p>
+                        <textarea id="output-html" readonly rows="12"></textarea>
+                        <button class="copy-btn" onclick="copyOutput('output-html')">📋 Copy HTML</button>
+
+                        <h4 style="color:#fff; margin:1.5rem 0 0.5rem;">Step 2: Register in script.js</h4>
+                        <p class="muted" style="font-size:0.85rem; margin-bottom:0.3rem;">
+                            1. Go to <a href="https://github.com/MARINBRU/marin/blob/main/script.js" target="_blank">script.js on GitHub</a><br>
+                            2. Click the ✏️ pencil icon to edit<br>
+                            3. Find the <code>buildLogEntries</code> array and paste this at the <strong>top</strong>:<br>
+                            4. Click <strong>Commit changes</strong>
+                        </p>
+                        <textarea id="output-js" readonly rows="4"></textarea>
+                        <button class="copy-btn" onclick="copyOutput('output-js')">📋 Copy JS Entry</button>
+
+                        <p class="muted" style="margin-top:1rem; font-size:0.85rem;">✅ After both commits, wait ~1 min and check <a href="https://marinbru.github.io/marin/build-log/" target="_blank">marinbru.github.io/marin/build-log/</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Live Preview (Write tab only) -->
+            <div id="preview-sidebar" class="preview-box">
+                <h3>👁️ Live Preview</h3>
+                <div id="preview-header-side">
+                    <p class="mono" style="color:var(--green-dim); font-size:0.85rem;" id="preview-meta-side"></p>
+                    <h4 style="color:#fff; margin:0.3rem 0 0.8rem;" id="preview-title-side"></h4>
+                </div>
+                <div class="preview-content" id="preview-body-side">
+                    <p class="muted" style="font-size:0.85rem;">Start typing to see preview...</p>
+                </div>
+                <div id="preview-tags-side" style="margin-top:1rem; display:flex; gap:0.3rem; flex-wrap:wrap;"></div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>VoltMoto — built in public by a solo founder.</p>
+    </div>
+</footer>
+
+<script>
+    // ===== Tags =====
+    let tags = [];
+    function addTag(tag) {
+        const input = document.getElementById('tag-input');
+        const t = (tag || input.value).trim().toLowerCase();
+        if (t && !tags.includes(t)) { tags.push(t); renderTags(); }
+        input.value = '';
+        input.focus();
+        updatePreview(); autoSave();
+    }
+    function removeTag(t) { tags = tags.filter(x => x !== t); renderTags(); updatePreview(); autoSave(); }
+    function renderTags() {
+        document.getElementById('tag-list').innerHTML = tags.map(t =>
+            `<span class="tag-pill">${t} <span class="remove" onclick="removeTag('${t}')">×</span></span>`
+        ).join('');
+    }
+
+    // ===== Preview =====
+    function updatePreview() {
+        const num = document.getElementById('post-number').value;
+        const date = document.getElementById('post-date').value;
+        const title = document.getElementById('post-title').value;
+        const content = document.getElementById('post-content').value;
+
+        // Top meta
+        document.getElementById('preview-meta').textContent = `${num} • ${date}`;
+        document.getElementById('preview-title').textContent = title;
+        document.getElementById('preview-meta-side').textContent = `${num} • ${date}`;
+        document.getElementById('preview-title-side').textContent = title;
+
+        // Body
+        const body = content || '<p class="muted">Start typing in the Write tab...</p>';
+        document.getElementById('preview-body').innerHTML = body;
+        document.getElementById('preview-body-side').innerHTML = body;
+
+        // Tags
+        document.getElementById('preview-tags-side').innerHTML = tags.map(t =>
+            `<span class="tag">${t}</span>`
+        ).join('');
+
+        // Filename
+        const filename = num.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'post';
+        document.getElementById('filename-display').textContent = filename + '.html';
+        document.getElementById('post-number-display').textContent = num;
+
+        // Generate tab outputs
+        generateOutputs(num, date, title, content, filename);
+    }
+
+    // ===== Generate Output Files =====
+    function generateOutputs(num, date, title, content, filename) {
+        const excerpt = document.getElementById('post-excerpt').value || '';
+
+        // HTML output
+        const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title} — VoltMoto Build Log</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="/marin/" class="logo">Volt<span>Moto</span></a>
+        <button class="hamburger" aria-label="Menu">☰</button>
+        <nav>
+            <a href="/marin/">Home</a>
+            <a href="index.html">Build Log</a>
+            <a href="../specs.html">Specs &amp; BOM</a>
+            <a href="../timeline.html">Timeline</a>
+            <a href="../research/">Research</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-content">
+    <div class="container">
+
+        <p class="mono" style="color:var(--green-dim);">${num} • ${date}</p>
+        <h1>${title}</h1>
+
+        <hr style="border-color:var(--border); margin: 1.5rem 0;">
+
+${content}
+
+        <hr style="border-color:var(--border); margin: 2rem 0;">
+
+        <div style="display:flex; gap:1rem; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+            <span class="muted">Tags: ${tags.map(t => `<span class="tag">${t}</span>`).join(' ')}</span>
+            <a href="index.html" class="btn btn-outline" style="font-size:0.85rem;">← Back to Build Log</a>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>VoltMoto — built in public by a solo founder.</p>
+    </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>`;
+
+        // JS entry
+        const id = filename;
+        const jsEntry = `{\n    id: '${id}',\n    date: '${date}',\n    title: '${title.replace(/'/g, "\\'")}',\n    excerpt: '${excerpt.replace(/'/g, "\\'")}',\n    tags: [${tags.map(t => `'${t}'`).join(', ')}],\n    file: '${id}.html'\n},`;
+
+        document.getElementById('output-html').value = html;
+        document.getElementById('output-js').value = jsEntry;
+    }
+
+    // ===== Copy =====
+    function copyOutput(id) {
+        const el = document.getElementById(id);
+        el.select();
+        document.execCommand('copy');
+        const btn = el.nextElementSibling;
+        const orig = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => btn.textContent = orig, 1500);
+    }
+
+    // ===== Tabs =====
+    function switchTab(name, btn) {
+        document.querySelectorAll('.tab-bar button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + name).classList.add('active');
+        if (name === 'publish') generateOutputs(
+            document.getElementById('post-number').value,
+            document.getElementById('post-date').value,
+            document.getElementById('post-title').value,
+            document.getElementById('post-content').value,
+            document.getElementById('filename-display').textContent.replace('.html', '')
+        );
+    }
+
+    // ===== Drafts (localStorage) =====
+    function saveDraft() {
+        const draft = {
+            number: document.getElementById('post-number').value,
+            date: document.getElementById('post-date').value,
+            title: document.getElementById('post-title').value,
+            excerpt: document.getElementById('post-excerpt').value,
+            tags: [...tags],
+            content: document.getElementById('post-content').value,
+            saved: new Date().toISOString()
+        };
+        const id = 'draft_' + Date.now();
+        localStorage.setItem(id, JSON.stringify(draft));
+        renderDrafts();
+        alert('💾 Draft saved!');
+    }
+
+    function loadDraft(id) {
+        if (id === 'new') { clearForm(); return; }
+        const data = JSON.parse(localStorage.getItem(id));
+        if (!data) return;
+        document.getElementById('post-number').value = data.number || '';
+        document.getElementById('post-date').value = data.date || '';
+        document.getElementById('post-title').value = data.title || '';
+        document.getElementById('post-excerpt').value = data.excerpt || '';
+        tags = data.tags || [];
+        renderTags();
+        document.getElementById('post-content').value = data.content || '';
+        updatePreview();
+        document.querySelectorAll('.draft-btn').forEach(b => b.classList.remove('active'));
+    }
+
+    function autoSave() {
+        // Auto-saves to a temporary draft every 30 seconds
+        if (window._autoSaveTimer) clearTimeout(window._autoSaveTimer);
+        window._autoSaveTimer = setTimeout(() => {
+            const draft = {
+                number: document.getElementById('post-number').value,
+                date: document.getElementById('post-date').value,
+                title: document.getElementById('post-title').value,
+                excerpt: document.getElementById('post-excerpt').value,
+                tags: [...tags],
+                content: document.getElementById('post-content').value,
+                saved: new Date().toISOString()
+            };
+            localStorage.setItem('draft_autosave', JSON.stringify(draft));
+        }, 30000);
+    }
+
+    function clearForm() {
+        document.getElementById('post-number').value = 'Post 001';
+        document.getElementById('post-date').value = '';
+        document.getElementById('post-title').value = '';
+        document.getElementById('post-excerpt').value = '';
+        tags = []; renderTags();
+        document.getElementById('post-content').value = '';
+        updatePreview();
+    }
+
+    function renderDrafts() {
+        const list = document.getElementById('draft-list');
+        const keys = Object.keys(localStorage).filter(k => k.startsWith('draft_')).sort().reverse();
+        list.innerHTML = keys.map(k => {
+            const d = JSON.parse(localStorage.getItem(k));
+            const label = d.title || d.number || 'Untitled';
+            return `<button class="draft-btn" onclick="loadDraft('${k}')">${label}</button>`;
+        }).join(' ');
+    }
+
+    // ===== Init =====
+    document.addEventListener('DOMContentLoaded', () => {
+        // Load autosave if exists
+        const auto = localStorage.getItem('draft_autosave');
+        if (auto) {
+            const d = JSON.parse(auto);
+            if (d.title || d.content) {
+                document.getElementById('post-number').value = d.number || 'Post 001';
+                document.getElementById('post-date').value = d.date || '';
+                document.getElementById('post-title').value = d.title || '';
+                document.getElementById('post-excerpt').value = d.excerpt || '';
+                tags = d.tags || []; renderTags();
+                document.getElementById('post-content').value = d.content || '';
+            }
+        }
+        // Set default date to today
+        if (!document.getElementById('post-date').value) {
+            const d = new Date();
+            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            document.getElementById('post-date').value = `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+        }
+        renderDrafts();
+        updatePreview();
+    });
+</script>
+
+</body>
+</html>
