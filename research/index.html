@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research — VoltMoto</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="/" class="logo">Volt<span>Moto</span></a>
+        <button class="hamburger" aria-label="Menu">☰</button>
+        <nav>
+            <a href="/">Home</a>
+            <a href="../build-log/">Build Log</a>
+            <a href="../specs.html">Specs &amp; BOM</a>
+            <a href="../timeline.html">Timeline</a>
+            <a href="index.html" class="active">Research</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-content">
+    <div class="container">
+        <h1>📚 Research Hub</h1>
+        <p class="muted">Competitor analysis, component deep-dives, supplier notes, and everything I learn along the way. Open-source knowledge for anyone building their own EV bike.</p>
+
+        <h2>🔋 Battery & Powertrain</h2>
+        <div class="research-grid">
+            <div class="research-card">
+                <h3>Custom Battery Suppliers Comparison</h3>
+                <p>Six options for sourcing a 20s12p P42A pack: EM3ev, ChiBattery, Battery Hookup, Grin, local builders, and Alibaba. Cost/quality/lead time comparison.</p>
+                <p class="source">📄 <a href="../../prototype/battery-suppliers.md">battery-suppliers.md</a></p>
+            </div>
+            <div class="research-card">
+                <h3>QS 138 Motor Deep-Dive</h3>
+                <p>70H vs 90H comparison. Power curves, real-world dyno results from DIY builds, cooling options, gearing calculators.</p>
+                <p class="source">📄 Coming soon</p>
+            </div>
+            <div class="research-card">
+                <h3>Votol EM-200 vs Kelly KLS</h3>
+                <p>Controller comparison. FOC tuning, regen braking setup, common failure modes, community support.</p>
+                <p class="source">📄 Coming soon</p>
+            </div>
+        </div>
+
+        <h2>🏍️ Competitors & Market</h2>
+        <div class="research-grid">
+            <div class="research-card">
+                <h3>Competitive Teardown</h3>
+                <p>Every electric bike under $16k compared: Zero, LiveWire, Ryvid, Land Moto, Sondors, Sur Ron. Pricing, specs, gaps.</p>
+                <p class="source">📄 <a href="../../research/competitive-teardown.md">competitive-teardown.md</a></p>
+            </div>
+            <div class="research-card">
+                <h3>Pricing Strategy Analysis</h3>
+                <p>Cost-plus vs value-based pricing. Where VoltMoto fits in the $5k-$8k hole left by Sondors' collapse.</p>
+                <p class="source">📄 Included in go-to-market plan</p>
+            </div>
+        </div>
+
+        <h2>💰 Funding & Business</h2>
+        <div class="research-grid">
+            <div class="research-card">
+                <h3>Funding Strategy</h3>
+                <p>Grants (SBIR, DOE, state), accelerators (HAX, YC, Hardware Club), crowdfunding, angel investors. Timeline and amounts.</p>
+                <p class="source">📄 <a href="../../funding/funding-strategy.md">funding-strategy.md</a></p>
+            </div>
+            <div class="research-card">
+                <h3>Go-To-Market Plan</h3>
+                <p>Demand validation, waitlist strategy, content strategy, road legality, risks, and cost-saving tactics.</p>
+                <p class="source">📄 <a href="../../goto-market/goto-market-plan.md">goto-market-plan.md</a></p>
+            </div>
+        </div>
+
+        <h2>🔧 Build Reference</h2>
+        <div class="research-grid">
+            <div class="research-card">
+                <h3>Full Prototype Architecture</h3>
+                <p>Complete system architecture, wiring diagram, BOM, performance estimates, and timeline for the prototype build.</p>
+                <p class="source">📄 <a href="../../prototype/prototype-architecture.md">prototype-architecture.md</a></p>
+            </div>
+            <div class="research-card">
+                <h3>Road Legality Checklist</h3>
+                <p>What you need for a road-legal prototype EV: VIN, lights, mirrors, horn, insurance, registration per state.</p>
+                <p class="source">📄 Included in go-to-market plan</p>
+            </div>
+        </div>
+
+        <hr style="border-color:var(--border); margin: 2rem 0;">
+
+        <p class="muted" style="text-align:center;">This research hub is updated as new findings come in. Everything is open-source — <br>if you're building your own EV bike, steal whatever's useful.</p>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>VoltMoto — built in public by a solo founder.</p>
+    </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

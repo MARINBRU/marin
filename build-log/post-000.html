@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post 000: VoltMoto Begins — VoltMoto Build Log</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="/" class="logo">Volt<span>Moto</span></a>
+        <button class="hamburger" aria-label="Menu">☰</button>
+        <nav>
+            <a href="/">Home</a>
+            <a href="index.html">Build Log</a>
+            <a href="../specs.html">Specs &amp; BOM</a>
+            <a href="../timeline.html">Timeline</a>
+            <a href="../research/">Research</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-content">
+    <div class="container">
+
+        <p class="mono" style="color:var(--green-dim);">Post 000 • Jun 18, 2026</p>
+        <h1>VoltMoto Begins — The Plan</h1>
+
+        <p><em>Why I'm building a $4k electric motorbike that should cost $12k.</em></p>
+
+        <hr style="border-color:var(--border); margin: 1.5rem 0;">
+
+        <h2>The Problem</h2>
+        <p>I love electric motorcycles. I hate their prices.</p>
+        <p>The Zero FX is $12,500. The LiveWire S2 Del Mar is $15,500. Even the "budget" Ryvid Anthem is $8,995.</p>
+        <p>Meanwhile, the DIY EV community is building incredible bikes in their garages with off-the-shelf parts — QS Motors, Votol controllers, Samsung cells — for a fraction of the cost. The performance is there. The price gap is huge. Nobody's bridging it properly.</p>
+
+        <h2>The Solution</h2>
+        <p><strong>VoltMoto.</strong> A high-performance electric motorbike built with proven, off-the-shelf components. Modular. DIY-friendly. Open-source BOM. And targeting <strong>$6,000 retail</strong> — half the price of the Zero FX with comparable real-world performance.</p>
+
+        <h2>The Spec (Locked)</h2>
+        <ul>
+            <li><strong>Battery:</strong> 20s12p (72V nominal, 50Ah) using 240× Samsung 40T cells</li>
+            <li><strong>Motor:</strong> QS 138 70H/90H — 10-18kW peak, proven in DIY builds</li>
+            <li><strong>Controller:</strong> Votol EM-200 — FOC sine wave, 500A peak</li>
+            <li><strong>BOM Target:</strong> Under $4,000 for the prototype</li>
+            <li><strong>Retail Target:</strong> $5,995 – $7,495</li>
+        </ul>
+
+        <h2>Why Not Build the Battery Myself?</h2>
+        <p>I thought about it. A 20s12p pack at 540A continuous is a lot of energy — 3.6 kWh, enough to sustain a dangerous arc if something goes wrong. The spot welder for copper busbars alone costs $200-400. And if I mess up cell #237 out of 240, that's a $1,000 loss with no warranty.</p>
+        <p>After research, I'm going with <strong>EM3ev</strong> for a custom-built pack. Same cost as DIY (~$1,400), but warrantied, professionally assembled, and I can focus my time on the frame, wiring, and tuning.</p>
+
+        <h2>The Plan</h2>
+        <p><strong>Donor frame conversion.</strong> Find a cheap used bike (Honda Grom, Ninja 250, or a dirt bike), strip everything, mount the electric drivetrain. This saves months vs. building a custom frame and gives me a VIN, suspension, wheels, and brakes out of the box. Custom frame comes in v2.</p>
+
+        <h2>Why "Build in Public"?</h2>
+        <p>Three reasons:</p>
+        <ol>
+            <li><strong>Accountability.</strong> If I tell the internet I'm doing something, I have to do it.</li>
+            <li><strong>Community.</strong> The DIY EV community on Endless Sphere, Reddit, and YouTube has decades of collective knowledge. I'll learn faster with their input.</li>
+            <li><strong>Customers.</strong> By the time the prototype rolls, I want 200+ people on the waitlist ready to put down deposits. That validates demand before I spend anything on tooling.</li>
+        </ol>
+
+        <h2>What's Next</h2>
+        <p>This week:</p>
+        <ol>
+            <li>Find a donor bike on Facebook Marketplace</li>
+            <li>Order QS 138 motor + Votol EM-200 (longest lead time)</li>
+            <li>Register voltmoto.com and get this site live</li>
+            <li>First YouTube video: "I'm building an electric motorbike for $4k"</li>
+        </ol>
+
+        <p><em>Let's go. 🏁</em></p>
+
+        <hr style="border-color:var(--border); margin: 2rem 0;">
+
+        <div style="display:flex; gap:1rem; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+            <span class="muted">Tags:
+                <span class="tag">planning</span>
+                <span class="tag">vision</span>
+                <span class="tag">specs</span>
+            </span>
+            <a href="index.html" class="btn btn-outline" style="font-size:0.85rem;">← Back to Build Log</a>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>VoltMoto — built in public by a solo founder.</p>
+    </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltMoto — Building an Affordable Electric Motorcycle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="/" class="logo">Volt<span>Moto</span></a>
+        <button class="hamburger" aria-label="Menu">☰</button>
+        <nav>
+            <a href="/" class="active">Home</a>
+            <a href="build-log/">Build Log</a>
+            <a href="specs.html">Specs &amp; BOM</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="research/">Research</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Building a <span>$4k Electric Motorcycle</span><br>That Rides Like a $12k One</h1>
+            <p>72V. 50Ah. 80mph. Open-source. DIY-friendly. Follow along as I build the VoltMoto prototype from scratch.</p>
+            <p style="margin-top:1.5rem;">
+                <a href="#waitlist" class="btn">Join the Waitlist →</a>
+                <a href="build-log/" class="btn btn-outline" style="margin-left:0.5rem;">Read the Build Log</a>
+            </p>
+        </section>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="value">0%</div>
+                <div class="label">Prototype Complete</div>
+            </div>
+            <div class="status-item">
+                <div class="value">0</div>
+                <div class="label">Build Log Entries</div>
+            </div>
+            <div class="status-item">
+                <div class="value">$0</div>
+                <div class="label">Spent of $4,000 Budget</div>
+            </div>
+            <div class="status-item">
+                <div class="value">0</div>
+                <div class="label">Waitlist Signups</div>
+            </div>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="progress-tracker">
+            <h2>⏳ Build Milestones</h2>
+
+            <div class="milestone in-progress">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>Phase 0: Planning &amp; Sourcing</h3>
+                    <p>Finalize specs, set up site, source donor bike, order parts</p>
+                    <div class="eta">ETA: 2 weeks • Started Jun 18</div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>Phase 1: Donor Prep</h3>
+                    <p>Strip donor frame, remove engine, clean and measure battery cavity</p>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>Phase 2: Motor &amp; Controller Mount</h3>
+                    <p>Fabricate motor mount, install controller, chain alignment, bench test</p>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>Phase 3: Battery Installation</h3>
+                    <p>Custom EM3ev pack arrives, wire fuse/contactor/precharge, first power-on</p>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>Phase 4: Wiring &amp; 12V System</h3>
+                    <p>Lights, dash, switchgear, DC-DC converter, brake light, horn</p>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>Phase 5: First Ride 🏁</h3>
+                    <p>Road test, suspension setup, controller tuning, range test, video</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Build Log -->
+        <section style="margin: 3rem 0;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h2 style="color:#fff;">📝 Latest Build Updates</h2>
+                <a href="build-log/" class="btn btn-outline" style="font-size:0.85rem; padding:0.4rem 1rem;">View All →</a>
+            </div>
+            <div class="post-grid" id="latest-posts"></div>
+        </section>
+
+        <!-- Quick Specs -->
+        <section style="margin: 3rem 0;">
+            <h2 style="color:#fff; margin-bottom:1rem;">⚡ Target Specs</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:1rem;">
+                <div class="status-item"><div class="value">72V</div><div class="label">Nominal Voltage</div></div>
+                <div class="status-item"><div class="value">50Ah</div><div class="label">Battery Capacity</div></div>
+                <div class="status-item"><div class="value">3.6 kWh</div><div class="label">Energy</div></div>
+                <div class="status-item"><div class="value">80 mph</div><div class="label">Top Speed</div></div>
+                <div class="status-item"><div class="value">60 mi</div><div class="label">City Range</div></div>
+                <div class="status-item"><div class="value">~280 lb</div><div class="label">Target Weight</div></div>
+            </div>
+        </section>
+
+        <!-- Waitlist -->
+        <section id="waitlist" class="waitlist-box">
+            <h2>🚀 Join the Waitlist</h2>
+            <p>First batch reservations open when we hit 200 signups. Early birds get builder pricing.</p>
+            <form name="waitlist" method="POST" data-netlify="true">
+                <input type="email" name="email" placeholder="your@email.com" required>
+                <br>
+                <button type="submit">I Want One →</button>
+            </form>
+            <p class="muted" style="margin-top:1rem; font-size:0.85rem;">No spam. Honest build updates. Unsubscribe anytime.</p>
+        </section>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>VoltMoto — built in public by a solo founder.<br>
+        <span class="muted">Open-source BOM • DIY-friendly • Performance for everyone</span></p>
+        <p style="margin-top:0.5rem; font-size:0.8rem;">
+            <a href="https://github.com/voltamoto" style="color:#888; text-decoration:none;">GitHub</a> •
+            <a href="https://youtube.com/voltamoto" style="color:#888; text-decoration:none;">YouTube</a> •
+            <a href="https://x.com/voltamoto" style="color:#888; text-decoration:none;">X/Twitter</a> •
+            <a href="https://reddit.com/r/voltamoto" style="color:#888; text-decoration:none;">Reddit</a>
+        </p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => renderBuildLog('latest-posts'));
+</script>
+
+</body>
+</html>

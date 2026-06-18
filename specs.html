@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specs & BOM — VoltMoto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="/" class="logo">Volt<span>Moto</span></a>
+        <button class="hamburger" aria-label="Menu">☰</button>
+        <nav>
+            <a href="/">Home</a>
+            <a href="build-log/">Build Log</a>
+            <a href="specs.html" class="active">Specs &amp; BOM</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="research/">Research</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-content">
+    <div class="container">
+
+        <h1>⚡ Prototype Specifications</h1>
+
+        <div class="specs-grid-page">
+            <div class="spec-item"><div class="val">72V</div><div class="lbl">Nominal Voltage</div></div>
+            <div class="spec-item"><div class="val">50 Ah</div><div class="lbl">Capacity</div></div>
+            <div class="spec-item"><div class="val">3.6 kWh</div><div class="lbl">Battery Energy</div></div>
+            <div class="spec-item"><div class="val">20s12p</div><div class="lbl">Cell Configuration</div></div>
+            <div class="spec-item"><div class="val">540 A</div><div class="lbl">Continuous Current</div></div>
+            <div class="spec-item"><div class="val">20-25 hp</div><div class="lbl">Motor Power</div></div>
+            <div class="spec-item"><div class="val">80 mph</div><div class="lbl">Target Top Speed</div></div>
+            <div class="spec-item"><div class="val">~4-5 s</div><div class="lbl">0-60 mph</div></div>
+            <div class="spec-item"><div class="val">60 mi</div><div class="lbl">City Range</div></div>
+            <div class="spec-item"><div class="val">~280 lb</div><div class="lbl">Target Weight</div></div>
+        </div>
+
+        <h2>🔧 Component Summary</h2>
+
+        <table class="bom-table">
+            <tr>
+                <th>Category</th>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Cost</th>
+            </tr>
+            <tr>
+                <td><strong>Battery</strong></td>
+                <td>Custom 20s12p pack w/ BMS &amp; enclosure (EM3ev)</td>
+                <td class="status-pending">Not ordered</td>
+                <td>$1,200-1,600</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Main contactor + precharge circuit</td>
+                <td class="status-pending">Not ordered</td>
+                <td>$60-100</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Main fuse 400A Class T / ANL</td>
+                <td class="status-pending">Not ordered</td>
+                <td>$15-25</td>
+            </tr>
+            <tr>
+                <td><strong>Motor</strong></td>
+                <td>QS Motor 138 70H or 90H</td>
+                <td class="status-pending">Not ordered</td>
+                <td>$400-600</td>
+            </tr>
+            <tr>
+                <td><strong>Controller</strong></td>
+                <td>Votol EM-200</td>
+                <td class="status-pending">Not ordered</td>
+                <td>$250-300</td>
+            </tr>
+            <tr>
+                <td><strong>Chassis</strong></td>
+                <td>Donor motorcycle frame</td>
+                <td class="status-pending">Not sourced</td>
+                <td>$500-1,500</td>
+            </tr>
+            <tr>
+                <td><strong>DC-DC</strong></td>
+                <td>72V → 12V 20A converter</td>
+                <td class="status-pending">Not ordered</td>
+                <td>$30-50</td>
+            </tr>
+            <tr>
+                <td><strong>Front End</strong></td>
+                <td>Used forks + triple + wheel + brake (salvage)</td>
+                <td class="status-pending">Included in donor</td>
+                <td>$200-400</td>
+            </tr>
+            <tr>
+                <td><strong>Rear</strong></td>
+                <td>Swingarm + shock (donor or used)</td>
+                <td class="status-pending">Included in donor</td>
+                <td>$50-150</td>
+            </tr>
+            <tr>
+                <td><strong>Brakes</strong></td>
+                <td>Calipers, master cylinder, braided lines</td>
+                <td class="status-pending">Not sourced</td>
+                <td>$100-200</td>
+            </tr>
+            <tr>
+                <td><strong>12V System</strong></td>
+                <td>Lights, dash, switchgear, horn, battery</td>
+                <td class="status-pending">Not ordered</td>
+                <td>$80-150</td>
+            </tr>
+            <tr>
+                <td><strong>Hardware</strong></td>
+                <td>Fasteners, wire, connectors, loom</td>
+                <td class="status-pending">Not ordered</td>
+                <td>$50-100</td>
+            </tr>
+            <tr>
+                <td><strong>Cooling</strong></td>
+                <td>Fan or oil cooling (optional)</td>
+                <td class="status-pending">Not ordered</td>
+                <td>$20-50</td>
+            </tr>
+            <tr class="total">
+                <td colspan="2"><strong>Total Estimated BOM</strong></td>
+                <td></td>
+                <td><strong>$3,000 – $4,500</strong></td>
+            </tr>
+        </table>
+
+        <p class="muted" style="font-size:0.85rem;">Status updates as parts are ordered and received.</p>
+
+        <h2>🔋 Battery Details</h2>
+        <ul>
+            <li><strong>Cells:</strong> 240× Samsung 40T (P42A) 21700</li>
+            <li><strong>Config:</strong> 20s12p (72V nominal, 50Ah)</li>
+            <li><strong>Continuous:</strong> 540A (45A per cell × 12 parallel)</li>
+            <li><strong>Burst:</strong> 700-900A</li>
+            <li><strong>Layout:</strong> Two 10s12p blocks, series-connected with copper bar</li>
+            <li><strong>BMS:</strong> 20s programmable with Bluetooth (JBD or ANT)</li>
+            <li><strong>Supplier:</strong> EM3ev (custom order)</li>
+        </ul>
+
+        <h2>⚙️ Motor &amp; Controller</h2>
+        <ul>
+            <li><strong>Motor:</strong> QS Motor 138 70H (10-12kW) or 90H (15-18kW)</li>
+            <li><strong>Controller:</strong> Votol EM-200 — FOC sine wave, 60-96V, 200A cont / 500A peak</li>
+            <li><strong>Gearing:</strong> 12-14T front sprocket, 48-60T rear (~4:1 to 5:1 ratio)</li>
+            <li><strong>Chain:</strong> 520 or 525 heavy-duty</li>
+        </ul>
+
+        <h2>📐 Frame &amp; Chassis Plan</h2>
+        <ul>
+            <li><strong>Approach:</strong> Donor frame conversion (prove powertrain first, custom frame for v2)</li>
+            <li><strong>Target donor:</strong> Honda Grom / Kawasaki Z125 / small dirt bike ($500-1,500 used)</li>
+            <li><strong>Suspension:</strong> From donor or salvaged sportbike front end</li>
+            <li><strong>Brakes:</strong> Hydraulic disc, braided stainless lines</li>
+        </ul>
+
+        <h2>📊 Performance Targets</h2>
+        <ul>
+            <li><strong>Top speed:</strong> 70-90 mph (depending on gearing)</li>
+            <li><strong>0-60 mph:</strong> ~4-5 seconds</li>
+            <li><strong>City range:</strong> 60-80 miles</li>
+            <li><strong>Highway range (60mph):</strong> 40-50 miles</li>
+            <li><strong>Weight:</strong> ~120-140 kg (265-310 lb)</li>
+        </ul>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>VoltMoto — built in public by a solo founder.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

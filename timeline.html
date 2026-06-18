@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline — VoltMoto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="/" class="logo">Volt<span>Moto</span></a>
+        <button class="hamburger" aria-label="Menu">☰</button>
+        <nav>
+            <a href="/">Home</a>
+            <a href="build-log/">Build Log</a>
+            <a href="specs.html">Specs &amp; BOM</a>
+            <a href="timeline.html" class="active">Timeline</a>
+            <a href="research/">Research</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-content">
+    <div class="container">
+        <h1>📅 Project Timeline</h1>
+        <p class="muted">Target: first ride in 3-5 months (solo builder, evenings/weekends).</p>
+
+        <div class="timeline">
+
+            <div class="timeline-item done">
+                <div class="date">Jun 18, 2026</div>
+                <h3>✅ Project Launched</h3>
+                <p>Business plan ratified, site launched, specs finalized. Battery architecture locked: 20s12p P42A.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="date">Week 1 (Jun 18-24)</div>
+                <h3>📋 Phase 0: Source & Order</h3>
+                <p>Find donor bike on FB Marketplace. Order QS 138 motor + Votol EM-200. Send battery dimensions to EM3ev. Register domain, deploy site.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="date">Week 2-3</div>
+                <h3>🔧 Phase 1: Donor Prep</h3>
+                <p>Strip donor bike. Remove engine, fuel tank, exhaust. Clean frame. Measure battery cavity. Send final dimensions to EM3ev. Order remaining parts (contactor, fuse, DC-DC, lights).</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="date">Week 3-4</div>
+                <h3>🔩 Phase 2: Motor & Controller Mount</h3>
+                <p>Fabricate motor mount bracket (steel plate, welded or bolted). Mount QS 138. Align chain/sprockets. Mount controller in airflow. Bench-test motor + controller with low-voltage PSU.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="date">Week 4-5</div>
+                <h3>🔋 Phase 3: Battery Arrives & HV Wiring</h3>
+                <p>EM3ev pack arrives. Wire main fuse (400A class T), main contactor, precharge circuit. Route HV cables (35-50mm²) to controller. Double-check polarity. First power-on (no load).</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="date">Week 5-6</div>
+                <h3>💡 Phase 4: Low-Voltage System</h3>
+                <p>Install DC-DC converter. Wire 12V distribution. Lights (headlight, taillight, turn signals). Dash/speedometer. Horn, brake light switch. Handlebar switchgear.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="date">Week 6-7</div>
+                <h3>🏁 Phase 5: First Power & Tune</h3>
+                <p>Full system checkout. Controller programming (conservative settings first). Test throttle response. Check for overheating, loose connections. Short test ride.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="date">Week 7-10</div>
+                <h3>🔁 Phase 6: Road Test & Iterate</h3>
+                <p>Suspension setup (sag, damping). Controller tuning (phase current, field weakening). Range test. Top speed run. Fix issues. V2 improvements.</p>
+            </div>
+
+        </div>
+
+        <div class="waitlist-box" style="margin-top:3rem;">
+            <h2>🎯 Current Status</h2>
+            <p style="font-size:1.2rem; color: var(--green); font-weight: 700;">Phase 0: Planning & Sourcing</p>
+            <p class="muted">Next milestone: Donor bike acquired and parts ordered.</p>
+            <p style="margin-top:1rem;">
+                <a href="/#waitlist" class="btn">Join the Waitlist</a>
+                <a href="build-log/" class="btn btn-outline" style="margin-left:0.5rem;">Read the Build Log</a>
+            </p>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>VoltMoto — built in public by a solo founder.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

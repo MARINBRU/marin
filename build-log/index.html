@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Log — VoltMoto</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="/" class="logo">Volt<span>Moto</span></a>
+        <button class="hamburger" aria-label="Menu">☰</button>
+        <nav>
+            <a href="/">Home</a>
+            <a href="index.html" class="active">Build Log</a>
+            <a href="../specs.html">Specs &amp; BOM</a>
+            <a href="../timeline.html">Timeline</a>
+            <a href="../research/">Research</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-content">
+    <div class="container">
+        <h1>📝 Build Log</h1>
+        <p class="muted">Every step of building VoltMoto, documented in real time. From spreadsheet to first ride.</p>
+
+        <div class="post-grid" id="all-posts"></div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>VoltMoto — built in public by a solo founder.</p>
+    </div>
+</footer>
+
+<script src="../script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => renderBuildLog('all-posts'));
+</script>
+
+</body>
+</html>
